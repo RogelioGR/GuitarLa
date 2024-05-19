@@ -7,12 +7,23 @@ import { DB } from "./data/DB";
 
 function App() {
   const [data, setData] = useState (DB)
+  const [cart, setCart] = useState([])
 
-// para Apis la forma correcta para proyecto mas complejos
-/* 
-  useEffect (() => {
-    setData (DB)
-  }, []) */
+function addToCart(item){
+
+  const itemExist = cart.findIndex(guitar=> guitar.id === item.id)
+  // existe en el carrito 
+  if(itemExist >= 0 ){
+    const updatedCart = [...cart]
+    updatedCart[itemExist].quantity++
+    setCart(updatedCart)
+  }
+  else{
+    console.log('No existe...  agregando... ')
+    item.quantity = 1
+    setCart([...cart, item])  }
+ 
+}
 
   return (
     <>
@@ -28,6 +39,8 @@ function App() {
                 <Guitar
                 key={guitar.id}
                   guitar={guitar}
+                  setCart={setCart}
+                  addToCart={addToCart}
                 />
               )
             })
