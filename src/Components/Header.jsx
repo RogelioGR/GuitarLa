@@ -1,7 +1,12 @@
 /* import { Fragment } from "react";  */
+
+
+
 /* import {React} from "react"; */
-function Header(){
-    const name = "Rogelio";
+function Header({cart, removeFromCart, increaseQuantity, decreaseQuantity, CleanCart}){
+
+    const isEmpty = () => cart.length ===0
+    const CartTotal = () => cart.reduce((total , item ) => total + (item.quantity * item.price), 0)
 
     return(
         <header className="py-5 header">
@@ -19,7 +24,11 @@ function Header(){
                         <img className="img-fluid" src="./public/img/carrito.png" alt="imagen carrito" />
 
                         <div id="carrito" className="bg-white p-3">
+
+                            {isEmpty() ? (
                             <p className="text-center">El carrito esta vacio</p>
+                            ):(
+                                <>
                             <table className="w-100 table">
                                 <thead>
                                     <tr>
@@ -31,25 +40,28 @@ function Header(){
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
+                                    {cart.map( Guitar =>(
+                                    <tr key={Guitar.id}> 
                                         <td>
-                                            <img className="img-fluid" src="./public/img/guitarra_02.jpg" alt="imagen guitarra" />
+                                            <img className="img-fluid" src={`img/${Guitar.image}.jpg`} alt="imagen guitarra" />
                                         </td>
-                                        <td>SRV</td>
+                                        <td>{Guitar.name}</td>
                                         <td className="fw-bold">
-                                                $299
+                                                ${Guitar.price}
                                         </td>
                                         <td className="flex align-items-start gap-4">
                                             <button
                                                 type="button"
                                                 className="btn btn-dark"
+                                                onClick={()=> decreaseQuantity(Guitar.id)}
                                             >
                                                 -
                                             </button>
-                                                1
+                                                {Guitar.quantity}
                                             <button
                                                 type="button"
                                                 className="btn btn-dark"
+                                                onClick={()=> increaseQuantity(Guitar.id)}
                                             >
                                                 +
                                             </button>
@@ -58,16 +70,21 @@ function Header(){
                                             <button
                                                 className="btn btn-danger"
                                                 type="button"
+                                                onClick={() => removeFromCart (Guitar.id)}
                                             >
                                                 X
                                             </button>
                                         </td>
                                     </tr>
+                                    ))}
                                 </tbody>
                             </table>
+                                
 
-                            <p className="text-end">Total pagar: <span className="fw-bold">$899</span></p>
-                            <button className="btn btn-dark w-100 mt-3 p-2">Vaciar Carrito</button>
+                            <p className="text-end">Total pagar: <span className="fw-bold">${CartTotal()} MXM</span></p>
+                            </>
+                            )}
+                            <button className="btn btn-dark w-100 mt-3 p-2" onClick={ CleanCart}>Vaciar Carrito</button>
                         </div>
                     </div>
                 </nav>
