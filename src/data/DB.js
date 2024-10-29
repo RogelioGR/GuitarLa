@@ -83,4 +83,18 @@ export const DB = [
         description: 'Morbi ornare augue nisl, vel elementum dui mollis vel. Curabitur non ex id eros fermentum hendrerit.',
         price: 379,
     },
+    {
+        id: 11,
+        name: 'Reed',
+        image: 'guitarra_11',
+        description: 'Morbi ornare augue nisl, vel elementum dui mollis vel. Curabitur non ex id eros fermentum hendrerit.',
+        price: 399,
+    },
+    {
+        id: 12,
+        name: 'Hazel',
+        image: 'guitarra_12',
+        description: 'Morbi ornare augue nisl, vel elementum dui mollis vel. Curabitur non ex id eros fermentum hendrerit.',
+        price: 379,
+    }
     ]
