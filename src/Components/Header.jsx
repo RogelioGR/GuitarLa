@@ -81,10 +81,10 @@ function Header({cart, removeFromCart, increaseQuantity, decreaseQuantity, Clean
                             </table>
                                 
 
-                            <p className="text-end">Total pagar: <span className="fw-bold">${CartTotal()} MXM</span></p>
+                            <p className="text-end">Total pagar G: <span className="fw-bold">${CartTotal()} MXM</span></p>
                             </>
                             )}
-                            <button className="btn btn-dark w-100 mt-3 p-2" onClick={ CleanCart}>Vaciar Carrito</button>
+                            <button className="btn btn-dark w-100 mt-3 p-2" onClick={ CleanCart}>Vaciar Carrito txt</button>
                         </div>
                     </div>
                 </nav>
